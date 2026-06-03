@@ -1,0 +1,42 @@
+---
+title: "Validacion del proyecto de pensiones"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+source(file.path("..", "scripts", "00_config.R"))
+source(file.path("..", "R", "funciones_validacion.R"))
+resultados <- rbind(
+  validar_estructura_proyecto(paths),
+  validar_paquetes(paquetes_requeridos),
+  validar_archivos_entrada(paths),
+  validar_sintaxis_r(c(file.path("..", "R"), file.path("..", "scripts"), file.path("..", "scr")))
+)
+```
+
+Row
+-------------------------------------
+
+### Resumen
+
+```{r}
+if (requireNamespace("DT", quietly = TRUE)) {
+  DT::datatable(resumen_validacion(resultados))
+} else {
+  resumen_validacion(resultados)
+}
+```
+
+### Detalle
+
+```{r}
+if (requireNamespace("DT", quietly = TRUE)) {
+  DT::datatable(resultados, options = list(pageLength = 10, scrollX = TRUE))
+} else {
+  resultados
+}
+```

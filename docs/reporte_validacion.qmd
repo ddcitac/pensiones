@@ -1,0 +1,23 @@
+---
+title: "Validacion del proyecto de pensiones"
+format: html
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+source(file.path("..", "scripts", "00_config.R"))
+source(file.path("..", "R", "funciones_validacion.R"))
+resultados <- rbind(
+  validar_estructura_proyecto(paths),
+  validar_paquetes(paquetes_requeridos),
+  validar_archivos_entrada(paths),
+  validar_sintaxis_r(c(file.path("..", "R"), file.path("..", "scripts"), file.path("..", "scr")))
+)
+resumen_validacion(resultados)
+```
+
+```{r}
+resultados
+```
