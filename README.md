@@ -1,4 +1,4 @@
-# Proyecto profesional de reservas de pensiones
+# Proyecto reservas de pensiones
 
 Este repositorio contiene una estructura modular para validar, limpiar, modelar y reportar reservas de mesadas del Formato 394. La carpeta `scr/` conserva los scripts historicos y la carpeta `scripts/` contiene el pipeline profesional listo para ejecutar desde RStudio.
 
